@@ -53,8 +53,7 @@ const Allcategory = () => {
           setShowModal(false);
         }}
       >
-        category ,title ,ingrediantes ,instructions, prep time , cook time ,
-        total time
+        hi
       </Modal>
       <div
         className="flex justify-center p-8 items-center"

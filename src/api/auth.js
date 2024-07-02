@@ -12,7 +12,7 @@ const storeToken = (token) => {
 };
 
 const login = async (userInfo) => {
-  const { data } = await instance.post("/login", userInfo);
+  const { data } = await instance.post("/signin", userInfo);
 
   storeToken(data.token);
   return data;
@@ -33,4 +33,19 @@ const logout = () => {
   localStorage.removeItem("token");
 };
 
-export { checkToken, storeToken, login, register, logout };
+const me = async () => {
+  const { data } = await instance.get("/signin");
+  console.log(data);
+
+  return data;
+};
+
+const update = async (userInfo) => {
+  const formData = new FormData();
+  for (const key in userInfo) formData.append(key, userInfo[key]);
+  const { data } = await instance.put("/profile", formData);
+
+  return data;
+};
+
+export { checkToken, storeToken, login, register, logout, me, update };

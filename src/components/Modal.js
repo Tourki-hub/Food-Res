@@ -15,7 +15,7 @@ const Modal = ({ isVisible, onClose, children }) => {
         <div className="w-[600px] flex flex-col">
           <button
             className="text-white text-xl place-self-end"
-            onClick={() => onClose()}
+            onClick={onClose}
           >
             X
           </button>
