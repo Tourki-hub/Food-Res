@@ -1,6 +1,7 @@
 import AllResButton from "../components/AllResButton";
 import Recipes from "../components/Recipes";
 import NewCard from "../components/NewCard";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -36,7 +37,9 @@ const LandingPage = () => {
           Recipes by category
         </div>
         <div className="py-9 px-10  ">
-          <Recipes />
+          <Link to={"/Allcategory"}>
+            <Recipes />
+          </Link>
         </div>
       </div>
       <div className=" h-900 w-full bg-orange-400 flex justify-center items-center p-12">
