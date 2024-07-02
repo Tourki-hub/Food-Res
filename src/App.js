@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { checkToken } from "./api/auth";
 import UserContext from "./Context/userContext";
 import Allcategory from "./pages/Allcategory";
+import Profile from "./pages/Profile";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" Component={LandingPage} />
           <Route path="/Allcategory" Component={Allcategory} />
+          <Route path="/profile" Component={Profile} />
         </Routes>
       </div>
     </UserContext.Provider>

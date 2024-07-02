@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from "react";
 import Modal from "./Modal";
 import UserContext from "../Context/userContext";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { login, logout } from "../api/auth";
 
@@ -11,6 +11,7 @@ const LogInButton = () => {
   const [user, setUser] = useContext(UserContext);
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
     mutationKey: ["login"],
@@ -23,7 +24,8 @@ const LogInButton = () => {
   });
 
   const handleLogout = () => {
-    logout(setUser);
+    logout();
+    setUser(false);
     navigate("/");
   };
 
@@ -120,7 +122,7 @@ const LogInButton = () => {
         </>
       ) : (
         <button
-          className="w-22 h-9 px-10 py-2 rounded shadow border border-emerald-700 flex justify-center cursor-pointer"
+          className="w-22 h-9 px-10 py-2 rounded shadow border border-emerald-700 flex justify-end cursor-pointer"
           onClick={handleLogout}
         >
           Logout
