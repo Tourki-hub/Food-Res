@@ -11,7 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" Component={LandingPage} />
-        <Route path="/category" Component={Allcategory} />
+        <Route path="/Allcategory" Component={Allcategory} />
       </Routes>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import Recipes from "../components/Recipes";
+import NewCard from "../components/NewCard";
 
 const Allcategory = () => {
   return (
@@ -15,6 +16,9 @@ const Allcategory = () => {
       </div>
       <div className=" flex justify-center p-6 si">
         <Recipes />
+      </div>
+      <div className="w-full h-full bg-red-50">
+        <NewCard />
       </div>
     </div>
   );
