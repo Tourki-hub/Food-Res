@@ -14,11 +14,11 @@ const Allcategory = () => {
           placeholder="Search"
         />
       </div>
-      <div className=" flex justify-center p-6 si">
+      <div className=" flex justify-center p-6">
         <Recipes />
       </div>
-      <div className="w-full h-full bg-red-50">
-        <NewCard />
+      <div className="w-full h-full bg-red-50 ">
+        <div className="px-3 py-4 flex "></div>
       </div>
     </div>
   );

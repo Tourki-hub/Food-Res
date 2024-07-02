@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
+import { getAllCategory } from "../api/category";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const Recipes = () => {
+  const { data } = useQuery({
+    queryKey: ["All-category"],
+    queryFn: getAllCategory,
+  });
   return (
     <div className="flex space-x-5">
       <CategoryCard
