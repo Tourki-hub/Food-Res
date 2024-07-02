@@ -65,11 +65,7 @@ const LandingPage = () => {
           Newest Recipes here
         </div>
       </div>
-      <div className="flex py-3 px-4">
-        <NewCard />
-        <NewCard />
-        <NewCard />
-      </div>
+      <div className="flex py-3 px-4"></div>
       <div className="flex justify-center py-4 ">
         <button className="transition  ease-in-out rounded-md  delay-50  hover:bg-emerald-700 hover:-translate-y-1">
           <AllResButton name={"All Recipes"} />
