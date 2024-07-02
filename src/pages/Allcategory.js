@@ -1,15 +1,34 @@
 import React, { useState } from "react";
 import CategoryCard from "../components/CategoryCard";
-import { Query, useQuery } from "@tanstack/react-query";
+import {
+  Query,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { getAllCategory } from "../api/category";
 import ResCard from "../components/ResCard";
 import { getAllRecipes } from "../api/recipes";
 import AllResButton from "../components/AllResButton";
 import Modal from "../components/Modal";
+import Input from "../components/Input";
 
 const Allcategory = () => {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [prep, setPrep] = useState("");
+  const [cookTime, setCookTime] = useState();
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationKey: ["create Resipe"],
+    mutationFn: (addNewRes) => (name, title, ingredients, prep, cookTime),
+    onSuccess: () => {
+      setShowModal(false);
+      queryClient.invalidateQueries(["Res"]);
+    },
+  });
   const {
     data: category,
     isLoading,
@@ -53,7 +72,42 @@ const Allcategory = () => {
           setShowModal(false);
         }}
       >
-        hi
+        <Input
+          name={"category"}
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+        <Input
+          name={"title"}
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+        />
+        <Input
+          name={"Ingredients"}
+          onChange={(event) => {
+            setIngredients(event.target.value);
+          }}
+        />
+        <Input
+          name={"prep-time"}
+          onChange={(event) => {
+            setPrep(event.target.value);
+          }}
+        />
+        <Input
+          name={"cook-Time"}
+          onChange={(event) => {
+            setCookTime(event.target.value);
+          }}
+        />
+        <button
+          onClick={mutate}
+          className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400 "
+        >
+          Submit
+        </button>
       </Modal>
       <div
         className="flex justify-center p-8 items-center"

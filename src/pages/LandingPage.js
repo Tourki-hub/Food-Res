@@ -1,6 +1,6 @@
 import AllResButton from "../components/AllResButton";
 import Recipes from "../components/Recipes";
-import NewCard from "../components/NewCard";
+
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategory } from "../api/category";
