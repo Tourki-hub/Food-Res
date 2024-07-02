@@ -1,8 +1,8 @@
 import instance from ".";
 
 const getAllCategory = async () => {
-  const res = await instance.get("category");
-  return res.data;
+  const { data } = await instance.get("category");
+  return data;
 };
 
 export { getAllCategory };
