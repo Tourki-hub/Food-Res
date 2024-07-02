@@ -12,7 +12,7 @@ const storeToken = (token) => {
 };
 
 const login = async (userInfo) => {
-  const { data } = await instance.post("/login", userInfo);
+  const { data } = await instance.post("/signin", userInfo);
 
   storeToken(data.token);
   return data;

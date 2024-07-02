@@ -99,24 +99,7 @@ const RegisterButton = () => {
                     />
                   </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="image"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Upload Picture
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="image"
-                      name="image"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleChange}
-                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none"
-                    />
-                  </div>
-                </div>
+
                 <div>
                   <button
                     type="submit"
