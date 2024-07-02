@@ -2,8 +2,21 @@ import AllResButton from "../components/AllResButton";
 import Recipes from "../components/Recipes";
 import NewCard from "../components/NewCard";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getAllCategory } from "../api/category";
+import CategoryCard from "../components/CategoryCard";
 
 const LandingPage = () => {
+  const {
+    data: category,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["category"],
+    queryFn: getAllCategory,
+  });
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error Occurred: {error.message}</div>;
   return (
     //landing page
     <div className=" w-full h-full bg-red-600 flex-col">
@@ -34,10 +47,15 @@ const LandingPage = () => {
 
       <div className=" h-300 w-full  ">
         <div className="text-emerald-700 text-[32px] font-bold font-['Syne'] leading-[67.20px] flex flex-col px-6">
-          Recipes by category
+          category
         </div>
         <div className="py-9 px-10  ">
           <Link to={"/Allcategory"}>
+            <div className=" flex justify-center p-6 space-x-6">
+              {category?.map((cat) => (
+                <CategoryCard key={cat._id} name={cat.name} />
+              ))}
+            </div>
             <Recipes />
           </Link>
         </div>
@@ -57,8 +75,6 @@ const LandingPage = () => {
           <AllResButton name={"All Recipes"} />
         </button>
       </div>
-
-      <div className=" h-full w-full bg-yellow-300">hi</div>
     </div>
   );
 };

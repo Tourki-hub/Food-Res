@@ -1,10 +1,24 @@
 import React from "react";
 import Recipes from "../components/Recipes";
 import NewCard from "../components/NewCard";
+import CategoryCard from "../components/CategoryCard";
+import { Query, useQuery } from "@tanstack/react-query";
+import { getAllCategory } from "../api/category";
 
 const Allcategory = () => {
+  const {
+    data: category,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["category"],
+    queryFn: getAllCategory,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error Occurred: {error.message}</div>;
   return (
-    <div className=" w-full h-full bg-red-600 flex-col">
+    <div className=" w-full h-full bg-white flex-col">
       <div className="w-full h-30 bg-white flex justify-center items-center p-6 search">
         <input
           type="text"
@@ -14,11 +28,10 @@ const Allcategory = () => {
           placeholder="Search"
         />
       </div>
-      <div className=" flex justify-center p-6 si">
-        <Recipes />
-      </div>
-      <div className="w-full h-full bg-red-50">
-        <NewCard />
+      <div className=" flex justify-center p-6 space-x-6">
+        {category?.map((cat) => (
+          <CategoryCard key={cat._id} name={cat.name} />
+        ))}
       </div>
     </div>
   );
