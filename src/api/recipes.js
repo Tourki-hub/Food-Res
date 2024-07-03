@@ -1,8 +1,7 @@
-import { type } from "@testing-library/user-event/dist/type";
 import instance from ".";
 
 const getAllRecipes = async () => {
-  const { data } = await instance.get("recipe");
+  const { data } = await instance.get("/recipe");
   return data;
 };
 const createRecipes = async (
@@ -13,7 +12,7 @@ const createRecipes = async (
   prepTime,
   cookTime
 ) => {
-  const res = await instance.post("recipe", {
+  const res = await instance.post("/recipe", {
     category: category,
     title: title,
     ingredients: ingredients,

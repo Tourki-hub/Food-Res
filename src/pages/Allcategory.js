@@ -26,7 +26,7 @@ const Allcategory = () => {
     mutationFn: (addNewRes) => (name, title, ingredients, prep, cookTime),
     onSuccess: () => {
       setShowModal(false);
-      queryClient.invalidateQueries(["Res"]);
+      queryClient.invalidateQueries(["recipes", "category"]);
     },
   });
   const {
@@ -63,7 +63,7 @@ const Allcategory = () => {
       </div>
       <div className=" flex justify-center space-x-5 p-10 flex-wrap">
         {recipes?.map((recipe) => (
-          <ResCard key={recipe.category} name={recipe.title} />
+          <ResCard key={recipe._id} name={recipe.title} />
         ))}
       </div>
       <Modal
