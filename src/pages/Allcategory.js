@@ -22,7 +22,6 @@ const Allcategory = () => {
   const [prep, setPrep] = useState(0);
   const [cookTime, setCookTime] = useState(0);
   const [selected, setSelected] = useState([]);
-  console.log(selected);
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["create Resipe"],
@@ -30,7 +29,7 @@ const Allcategory = () => {
       createRecipes({
         category: selected[0]?.value,
         title,
-        ingredients,
+        ingredients: selected[0]?.value,
         prepTime: prep,
         cookTime,
       }),
@@ -40,13 +39,7 @@ const Allcategory = () => {
       queryClient.invalidateQueries(["recipes"]);
     },
   });
-  console.log({
-    category: selected[0]?.value,
-    title,
-    ingredients,
-    prepTime: prep,
-    cookTime,
-  });
+
   const {
     data: category,
     isLoading,
@@ -63,7 +56,14 @@ const Allcategory = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Occurred: {error.message}</div>;
-  const options = category?.map((cat) => ({ label: cat.name, value: cat._id }));
+  const optionsCategory = category?.map((cat) => ({
+    label: cat.name,
+    value: cat._id,
+  }));
+  const optionsIngrediant = recipes?.map((ingrediant) => ({
+    label: ingrediant.name,
+    value: ingrediant._id,
+  }));
 
   return (
     <div className=" w-full h-full bg-white flex-col justify-center">
@@ -96,7 +96,7 @@ const Allcategory = () => {
       >
         <form action="Post">
           <MultiSelect
-            options={options}
+            options={optionsCategory}
             value={selected}
             onChange={setSelected}
             labelledBy="Select"
@@ -112,6 +112,12 @@ const Allcategory = () => {
             onChange={(event) => {
               setTitle(event.target.value);
             }}
+          />
+          <MultiSelect
+            options={optionsIngrediant}
+            value={selected}
+            onChange={setSelected}
+            labelledBy="Select"
           />
           <Input
             name={"Ingredients"}
