@@ -26,7 +26,7 @@ const Allcategory = () => {
     mutationFn: (addNewRes) => (name, title, ingredients, prep, cookTime),
     onSuccess: () => {
       setShowModal(false);
-      queryClient.invalidateQueries(["recipes", "category"]);
+      queryClient.invalidateQueries(["recipes"]);
     },
   });
   const {
@@ -72,42 +72,44 @@ const Allcategory = () => {
           setShowModal(false);
         }}
       >
-        <Input
-          name={"category"}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-        />
-        <Input
-          name={"title"}
-          onChange={(event) => {
-            setTitle(event.target.value);
-          }}
-        />
-        <Input
-          name={"Ingredients"}
-          onChange={(event) => {
-            setIngredients(event.target.value);
-          }}
-        />
-        <Input
-          name={"prep-time"}
-          onChange={(event) => {
-            setPrep(event.target.value);
-          }}
-        />
-        <Input
-          name={"cook-Time"}
-          onChange={(event) => {
-            setCookTime(event.target.value);
-          }}
-        />
-        <button
-          onClick={mutate}
-          className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400 "
-        >
-          Submit
-        </button>
+        <form action="Post">
+          <Input
+            name={"category"}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+          />
+          <Input
+            name={"title"}
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+          />
+          <Input
+            name={"Ingredients"}
+            onChange={(event) => {
+              setIngredients(event.target.value);
+            }}
+          />
+          <Input
+            name={"prep-time"}
+            onChange={(event) => {
+              setPrep(event.target.value);
+            }}
+          />
+          <Input
+            name={"cook-Time"}
+            onChange={(event) => {
+              setCookTime(event.target.value);
+            }}
+          />
+          <button
+            onClick={mutate}
+            className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400 "
+          >
+            Submit
+          </button>
+        </form>
       </Modal>
       <div
         className="flex justify-center p-8 items-center"

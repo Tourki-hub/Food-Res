@@ -1,30 +1,70 @@
-import React from "react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const MenuButton = () => {
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default function Example() {
   return (
-    <div>
-      <path
-        id="Vector"
-        d="M21 15C21 15.1989 20.921 15.3897 20.7803 15.5303C20.6397 15.671 20.4489 15.75 20.25 15.75H3.75C3.55109 15.75 3.36032 15.671 3.21967 15.5303C3.07902 15.3897 3 15.1989 3 15C3 14.8011 3.07902 14.6103 3.21967 14.4697C3.36032 14.329 3.55109 14.25 3.75 14.25H20.25C20.4489 14.25 20.6397 14.329 20.7803 14.4697C20.921 14.6103 21 14.8011 21 15ZM3.75 9.75H20.25C20.4489 9.75 20.6397 9.67098 20.7803 9.53033C20.921 9.38968 21 9.19891 21 9C21 8.80109 20.921 8.61032 20.7803 8.46967C20.6397 8.32902 20.4489 8.25 20.25 8.25H3.75C3.55109 8.25 3.36032 8.32902 3.21967 8.46967C3.07902 8.61032 3 8.80109 3 9C3 9.19891 3.07902 9.38968 3.21967 9.53033C3.36032 9.67098 3.55109 9.75 3.75 9.75Z"
-        fill="#0F7A60"
-      />
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="ph:equals xsmall">
-          <path
-            id="Vector"
-            d="M21 15C21 15.1989 20.921 15.3897 20.7803 15.5303C20.6397 15.671 20.4489 15.75 20.25 15.75H3.75C3.55109 15.75 3.36032 15.671 3.21967 15.5303C3.07902 15.3897 3 15.1989 3 15C3 14.8011 3.07902 14.6103 3.21967 14.4697C3.36032 14.329 3.55109 14.25 3.75 14.25H20.25C20.4489 14.25 20.6397 14.329 20.7803 14.4697C20.921 14.6103 21 14.8011 21 15ZM3.75 9.75H20.25C20.4489 9.75 20.6397 9.67098 20.7803 9.53033C20.921 9.38968 21 9.19891 21 9C21 8.80109 20.921 8.61032 20.7803 8.46967C20.6397 8.32902 20.4489 8.25 20.25 8.25H3.75C3.55109 8.25 3.36032 8.32902 3.21967 8.46967C3.07902 8.61032 3 8.80109 3 9C3 9.19891 3.07902 9.38968 3.21967 9.53033C3.36032 9.67098 3.55109 9.75 3.75 9.75Z"
-            fill="#0F7A60"
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-green-700 px-3 py-2 text-sm font-normal font-['Syne'] text-white shadow-sm ring-1 ring-inset ring-green-600 hover:bg-green-600">
+          Menu
+          <ChevronDownIcon
+            className="-mr-1 h-5 w-5 text-white"
+            aria-hidden="true"
           />
-        </g>
-      </svg>
-    </div>
-  );
-};
+        </MenuButton>
+      </div>
 
-export default MenuButton;
+      <MenuItems
+        transition
+        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+      >
+        <div className="py-1">
+          <MenuItem>
+            {({ focus }) => (
+              <a
+                href="#"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-sm"
+                )}
+              >
+                Account settings
+              </a>
+            )}
+          </MenuItem>
+          <MenuItem>
+            {({ focus }) => (
+              <a
+                href="#"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-sm"
+                )}
+              >
+                All chefs
+              </a>
+            )}
+          </MenuItem>
+          <MenuItem>
+            {({ focus }) => (
+              <a
+                href="#"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-sm"
+                )}
+              >
+                All-category
+              </a>
+            )}
+          </MenuItem>
+          <form method="POST" action="#"></form>
+        </div>
+      </MenuItems>
+    </Menu>
+  );
+}

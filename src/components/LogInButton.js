@@ -42,7 +42,7 @@ const LogInButton = () => {
     <Fragment>
       {!user ? (
         <>
-          <div className="w-22 h-9 px-10 py-2 rounded shadow border border-emerald-700 flex justify-center cursor-pointer">
+          <div className="w-22 h-9 px-10 py-2 rounded shadow border border-green-600 flex justify-center cursor-pointer">
             <div
               className="text-emerald-700 text-sm font-normal font-['Syne'] uppercase leading-tight"
               onClick={() => {
