@@ -8,26 +8,44 @@ import {
 } from "@tanstack/react-query";
 import { getAllCategory } from "../api/category";
 import ResCard from "../components/ResCard";
-import { getAllRecipes } from "../api/recipes";
+import { createRecipes, getAllRecipes } from "../api/recipes";
 import AllResButton from "../components/AllResButton";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
+import { MultiSelect } from "react-multi-select-component";
 
 const Allcategory = () => {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState([]);
-  const [prep, setPrep] = useState("");
-  const [cookTime, setCookTime] = useState();
+  const [ingredients, setIngredients] = useState("");
+  const [prep, setPrep] = useState(0);
+  const [cookTime, setCookTime] = useState(0);
+  const [selected, setSelected] = useState([]);
+  console.log(selected);
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["create Resipe"],
-    mutationFn: (addNewRes) => (name, title, ingredients, prep, cookTime),
+    mutationFn: () =>
+      createRecipes({
+        category: selected[0]?.value,
+        title,
+        ingredients,
+        prepTime: prep,
+        cookTime,
+      }),
     onSuccess: () => {
       setShowModal(false);
+
       queryClient.invalidateQueries(["recipes"]);
     },
+  });
+  console.log({
+    category: selected[0]?.value,
+    title,
+    ingredients,
+    prepTime: prep,
+    cookTime,
   });
   const {
     data: category,
@@ -42,8 +60,10 @@ const Allcategory = () => {
     queryKey: ["recipes"],
     queryFn: getAllRecipes,
   });
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Occurred: {error.message}</div>;
+  const options = category?.map((cat) => ({ label: cat.name, value: cat._id }));
 
   return (
     <div className=" w-full h-full bg-white flex-col justify-center">
@@ -56,14 +76,16 @@ const Allcategory = () => {
           placeholder="Search"
         />
       </div>
-      <div className=" flex justify-center p-6 space-x-6">
+      <div className="overflow-hidden bg-gray-50 sm:rounded-lg flex p-3 items-center">
         {category?.map((cat) => (
           <CategoryCard key={cat._id} name={cat.name} />
         ))}
       </div>
       <div className=" flex justify-center space-x-5 p-10 flex-wrap">
         {recipes?.map((recipe) => (
-          <ResCard key={recipe._id} name={recipe.title} />
+          <div className="px-4 py-5 ">
+            <ResCard key={recipe._id} name={recipe.title} />
+          </div>
         ))}
       </div>
       <Modal
@@ -73,6 +95,12 @@ const Allcategory = () => {
         }}
       >
         <form action="Post">
+          <MultiSelect
+            options={options}
+            value={selected}
+            onChange={setSelected}
+            labelledBy="Select"
+          />
           <Input
             name={"category"}
             onChange={(event) => {
@@ -104,7 +132,10 @@ const Allcategory = () => {
             }}
           />
           <button
-            onClick={mutate}
+            onClick={(e) => {
+              e.preventDefault();
+              mutate();
+            }}
             className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400 "
           >
             Submit

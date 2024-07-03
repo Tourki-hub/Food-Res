@@ -47,7 +47,7 @@ const LandingPage = () => {
       </div>
 
       <div className=" h-300 w-full  ">
-        <div className="text-emerald-700 text-[32px] font-bold font-['Syne'] leading-[67.20px] flex flex-col px-6">
+        <div className="text-emerald-700 text-[32px] font-bold font-['Syne'] leading-[67.20px] flex flex-col ">
           category
         </div>
         <div className="py-9 px-10  ">

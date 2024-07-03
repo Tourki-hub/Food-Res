@@ -2,15 +2,13 @@ import React from "react";
 
 const category = ({ name }) => {
   return (
-    <div className="w-[112px] h-[159px] p-3 bg-red-50 rounded flex-col justify-center items-center gap-3 inline-flex py-4 cursor-pointer">
+    <div className="overflow-hidden bg-gray-50 sm:rounded-lg cursor-pointer flex justify-center">
       {/* <img
         className="self-stretch grow shrink basis-0 rounded"
         src={img}
         alt="category"
       /> */}
-      <div className="text-emerald-700 text-xl font-bold font-['Syne'] leading-normal">
-        {name}
-      </div>
+      <div className="px-4 py-5 sm:p-6">{name}</div>
     </div>
   );
 };

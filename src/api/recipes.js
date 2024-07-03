@@ -4,22 +4,15 @@ const getAllRecipes = async () => {
   const { data } = await instance.get("/recipe");
   return data;
 };
-const createRecipes = async (
-  category,
-  title,
-  ingredients,
-  instructions,
-  prepTime,
-  cookTime
-) => {
+const createRecipes = async (recipeInfo) => {
   try {
     const res = await instance.post("/recipe", {
-      category: category,
-      title: title,
-      ingredients: ingredients,
-      instructions: instructions,
-      prepTime: prepTime,
-      cookTime: cookTime,
+      category: recipeInfo.category,
+      title: recipeInfo.title,
+      ingredients: recipeInfo.ingredients,
+      instructions: recipeInfo.instructions,
+      prepTime: parseInt(recipeInfo.prepTime),
+      cookTime: parseInt(recipeInfo.cookTime),
     });
 
     console.log("Response:", res);
