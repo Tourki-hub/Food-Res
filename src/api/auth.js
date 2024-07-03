@@ -33,11 +33,15 @@ const logout = () => {
   localStorage.removeItem("token");
 };
 
-const me = async () => {
-  const { data } = await instance.get("/me");
-  console.log(data);
+const me = async (userId) => {
+  try {
+    const { data } = await instance.get(`/me/${userId}`);
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    throw error;
+  }
 };
 
 const update = async (userInfo) => {
