@@ -34,7 +34,7 @@ const logout = () => {
 };
 
 const me = async () => {
-  const { data } = await instance.get("/signin");
+  const { data } = await instance.get("/me");
   console.log(data);
 
   return data;
