@@ -4,7 +4,7 @@ import { me, update } from "../api/auth";
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState({});
-  const userId = "someUserId"; // Replace this with the actual user ID logic
+  const userId = "someUserId";
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -27,7 +27,7 @@ const Profile = () => {
     mutationFn: () => update(userInfo),
     onSuccess: () => {},
   });
-
+  console.log(data);
   const queryClient = useQueryClient();
   queryClient.invalidateQueries({ queryKey: ["profile"] });
 
@@ -37,7 +37,7 @@ const Profile = () => {
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
           <img
-            // src={`https://react-bank-project.eapi.joincoded.com/${data?.image}`}
+            src={`http://localhost:8000/${data?.image}`}
             alt="profile"
             className="rounded-xl"
           />

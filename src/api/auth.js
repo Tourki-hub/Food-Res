@@ -35,7 +35,7 @@ const logout = () => {
 
 const me = async (userId) => {
   try {
-    const { data } = await instance.get(`/me/${userId}`);
+    const { data } = await instance.get(`/me`);
 
     return data;
   } catch (error) {
