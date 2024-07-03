@@ -45,7 +45,7 @@ const Profile = () => {
           />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">{data?.username}</h2>
+          <h1 className="card-title">{data?.username}</h1>
           <div className="card-actions">
             <input
               type="file"
