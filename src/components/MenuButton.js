@@ -1,9 +1,15 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { logout } from "../api/auth";
+import { Navigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const handleLogout = () => {
+  logout();
+  Navigate("/");
+};
 
 export default function Example() {
   return (
@@ -26,7 +32,7 @@ export default function Example() {
           <MenuItem>
             {({ focus }) => (
               <a
-                href="#"
+                href="/profile"
                 className={classNames(
                   focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
                   "block px-4 py-2 text-sm"
@@ -52,13 +58,27 @@ export default function Example() {
           <MenuItem>
             {({ focus }) => (
               <a
-                href="#"
+                href="/Allcategory"
                 className={classNames(
                   focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
                   "block px-4 py-2 text-sm"
                 )}
               >
                 All-category
+              </a>
+            )}
+          </MenuItem>
+          <MenuItem>
+            {({ focus }) => (
+              <a
+                href="/"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-sm"
+                )}
+                onClick={handleLogout}
+              >
+                logout
               </a>
             )}
           </MenuItem>
