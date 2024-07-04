@@ -47,7 +47,7 @@ const me = async (userId) => {
 const update = async (userInfo) => {
   const formData = new FormData();
   for (const key in userInfo) formData.append(key, userInfo[key]);
-  const { data } = await instance.put("/profile", formData);
+  const { data } = await instance.post("/updateUser", formData);
 
   return data;
 };

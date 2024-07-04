@@ -33,7 +33,6 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
-      <div className="absolute inset-0 -z-10 overflow-hidden"></div>
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
           <img
@@ -44,20 +43,20 @@ const Profile = () => {
         </figure>
         <div className="card-body items-center text-center">
           <h1 className="card-title">UserName : {data?.username}</h1>
-          <div className="card-actions">
-            <input
-              type="file"
-              id="image"
-              name="image"
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-            <button className="w-full btn btn-primary" onClick={mutate}>
-              Update
-            </button>
-          </div>
         </div>
+      </div>
+      <div className="card-actions">
+        <input
+          type="file"
+          id="image"
+          name="image"
+          onChange={handleChange}
+          className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <button className="w-full btn btn-primary" onClick={mutate}>
+          Update
+        </button>
       </div>
     </div>
   );
