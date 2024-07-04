@@ -13,6 +13,7 @@ import AllResButton from "../components/AllResButton";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
 import { MultiSelect } from "react-multi-select-component";
+import { ingrediant } from "../api/ingrediant";
 
 const Allcategory = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ const Allcategory = () => {
   const [prep, setPrep] = useState(0);
   const [cookTime, setCookTime] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [search, setSearch] = useState("");
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["create Resipe"],
@@ -53,7 +55,6 @@ const Allcategory = () => {
     queryKey: ["recipes"],
     queryFn: getAllRecipes,
   });
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Occurred: {error.message}</div>;
   const optionsCategory = category?.map((cat) => ({
@@ -61,9 +62,12 @@ const Allcategory = () => {
     value: cat._id,
   }));
   const optionsIngrediant = recipes?.map((ingrediant) => ({
-    label: ingrediant.name,
+    label: ingrediant.title,
     value: ingrediant._id,
   }));
+  const filteredCategory = category?.filter((cat) =>
+    cat.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className=" w-full h-full bg-white flex-col justify-center">
@@ -72,19 +76,27 @@ const Allcategory = () => {
           type="text"
           name="search"
           id="search"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
           className="block w-[30%] rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-700 sm:text-sm sm:leading-6"
           placeholder="Search"
         />
       </div>
       <div className="overflow-hidden bg-gray-50 sm:rounded-lg flex p-3 items-center">
-        {category?.map((cat) => (
+        {filteredCategory?.map((cat) => (
           <CategoryCard key={cat._id} name={cat.name} />
         ))}
       </div>
       <div className=" flex justify-center space-x-5 p-10 flex-wrap">
         {recipes?.map((recipe) => (
           <div className="px-4 py-5 ">
-            <ResCard key={recipe._id} name={recipe.title} />
+            <ResCard
+              name={recipe.title}
+              key={recipe._id}
+              image={recipe.image}
+            />
           </div>
         ))}
       </div>
