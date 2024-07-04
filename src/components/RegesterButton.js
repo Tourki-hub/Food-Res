@@ -45,10 +45,10 @@ const RegisterButton = () => {
   return (
     <Fragment>
       <div
-        className="w-22 h-9 px-10 py-2 rounded shadow border border-emerald-700 flex justify-center cursor-pointer"
+        className="w-22 h-9 px-10 py-2 rounded shadow border border-emerald-700 flex justify-center cursor-pointer  bg-emerald-600"
         onClick={() => setShowModal(true)}
       >
-        <div className="text-emerald-700 text-sm font-normal font-['Syne'] uppercase leading-tight">
+        <div className="text-white text-sm font-normal font-['Syne'] uppercase leading-tight">
           Register
         </div>
       </div>

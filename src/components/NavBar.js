@@ -16,9 +16,7 @@ const NavBar = () => {
       <div className="w-full h-[72px] flex justify-center bg-white items-center  p-9">
         <div className="justify-start items-center gap-2 flex cursor-pointer">
           <div className=" flex justify-start items-center space-x-6 px-20 ">
-            <div className="rounded-md bg-green-700  text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 transition  ease-in-out  delay-50  hover:-translate-y-1">
-              <RegesterButton />
-            </div>
+            <RegesterButton />
 
             <LogInButton name={"LogIn"} />
             <div>

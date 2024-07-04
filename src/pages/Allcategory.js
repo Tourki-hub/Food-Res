@@ -24,6 +24,7 @@ const Allcategory = () => {
   const [cookTime, setCookTime] = useState(0);
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
+  const [userInfo, setUserInfo] = useState({});
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["create Resipe"],
@@ -41,6 +42,13 @@ const Allcategory = () => {
       queryClient.invalidateQueries(["recipes"]);
     },
   });
+  const handleChange = (e) => {
+    if (e.target.name === "image") {
+      setUserInfo({ ...userInfo, [e.target.name]: e.target.files[0] });
+    } else {
+      setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    }
+  };
 
   const {
     data: category,
@@ -106,35 +114,33 @@ const Allcategory = () => {
           setShowModal(false);
         }}
       >
-        <form action="Post">
-          <MultiSelect
-            options={optionsCategory}
-            value={selected}
-            onChange={setSelected}
-            labelledBy="Select"
-          />
+        <form>
+          <div className="flex  justify-between">
+            category
+            <MultiSelect
+              className=" w-[70%] h-20px"
+              options={optionsCategory}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
+            />
+          </div>
+
+          <div className="flex  justify-between">
+            Ingredians
+            <MultiSelect
+              className=" w-[70%] h-5px"
+              options={optionsIngrediant}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
+            ></MultiSelect>
+          </div>
           <Input
-            name={"category"}
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-          <Input
+            className=" w-[100%] h-20"
             name={"title"}
             onChange={(event) => {
               setTitle(event.target.value);
-            }}
-          />
-          <MultiSelect
-            options={optionsIngrediant}
-            value={selected}
-            onChange={setSelected}
-            labelledBy="Select"
-          />
-          <Input
-            name={"Ingredients"}
-            onChange={(event) => {
-              setIngredients(event.target.value);
             }}
           />
           <Input
@@ -143,11 +149,13 @@ const Allcategory = () => {
               setPrep(event.target.value);
             }}
           />
-          <Input
-            name={"cook-Time"}
-            onChange={(event) => {
-              setCookTime(event.target.value);
-            }}
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
           />
           <button
             onClick={(e) => {

@@ -27,25 +27,29 @@ const Profile = () => {
     mutationFn: () => update(userInfo),
     onSuccess: () => {},
   });
-  console.log(data);
+
   const queryClient = useQueryClient();
   queryClient.invalidateQueries({ queryKey: ["profile"] });
 
   return (
-    <div className="min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <figure className="px-10 pt-10">
+    <div className="min-h-screen flex items-center justify-between flex-col p-12">
+      <div className="card w-96 bg-base-100 shadow-xl p-10">
+        <figure className="px-10 pt-10 p-12">
           <img
-            src={`http://localhost:8000/${data?.image}`}
+            src={
+              data?.image
+                ? `http://localhost:8000/${data?.image}`
+                : "https://t3.ftcdn.net/jpg/06/19/26/46/360_F_619264680_x2PBdGLF54sFe7kTBtAvZnPyXgvaRw0Y.jpg"
+            }
             alt="profile"
             className="rounded-xl"
           />
         </figure>
         <div className="card-body items-center text-center">
-          <h1 className="card-title">UserName : {data?.username}</h1>
+          <h1 className="card-title"> {data?.username}</h1>
         </div>
       </div>
-      <div className="card-actions">
+      <form className="card-actions">
         <input
           type="file"
           id="image"
@@ -54,10 +58,16 @@ const Profile = () => {
           className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
-        <button className="w-full btn btn-primary" onClick={mutate}>
+        <button
+          className="w-full btn btn-primary"
+          onClick={(e) => {
+            e.preventDefault();
+            mutate();
+          }}
+        >
           Update
         </button>
-      </div>
+      </form>
     </div>
   );
 };
