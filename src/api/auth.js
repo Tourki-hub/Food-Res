@@ -43,7 +43,7 @@ const me = async (userId) => {
     throw error;
   }
 };
-
+//this update function is to update user profile
 const update = async (userInfo) => {
   const formData = new FormData();
   for (const key in userInfo) formData.append(key, userInfo[key]);
