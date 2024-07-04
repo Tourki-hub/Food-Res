@@ -6,12 +6,16 @@ import { Navigate } from "react-router-dom";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const handleLogout = () => {
-  logout();
-  Navigate("/");
-};
+// const handleLogout = () => {
+//   logout();
+//   Navigate("/");
+// };
 
 export default function Example() {
+  const handleLogout = () => {
+    logout();
+    Navigate("/");
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
