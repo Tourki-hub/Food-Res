@@ -33,6 +33,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
+      <div className="absolute inset-0 -z-10 overflow-hidden"></div>
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
           <img
