@@ -32,9 +32,9 @@ const Profile = () => {
   queryClient.invalidateQueries({ queryKey: ["profile"] });
 
   return (
-    <div className="min-h-screen flex items-center justify-between flex-col p-12">
-      <div className="card w-96 bg-base-100 shadow-xl p-10">
-        <figure className="px-10 pt-10 p-12">
+    <div className="min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <figure className="px-10 pt-10">
           <img
             src={
               data?.image

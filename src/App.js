@@ -7,6 +7,7 @@ import { checkToken } from "./api/auth";
 import UserContext from "./Context/userContext";
 import Allcategory from "./pages/Allcategory";
 import Profile from "./pages/Profile";
+import allrecipes from "./pages/allrecipes";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" Component={LandingPage} />
           <Route path="/Allcategory" Component={Allcategory} />
           <Route path="/profile" Component={Profile} />
+          <Route path="/all" Component={allrecipes} />
         </Routes>
       </div>
     </UserContext.Provider>

@@ -49,7 +49,7 @@ const LogInButton = () => {
                 setShowModal(true);
               }}
             >
-              Login
+              L
             </div>
             <Modal
               isVisible={showModal}
